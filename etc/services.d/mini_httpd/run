@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+sleep 10
+
+exec mini_httpd -h 127.0.0.1 -p 8080 -d / -dd /www/ -D

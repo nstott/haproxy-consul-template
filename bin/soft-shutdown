@@ -1,0 +1,11 @@
+#!/bin/sh
+set -ex
+
+kill -USR1 $(pidof haproxy)
+s6-svwait -d /var/run/s6/services/haproxy1
+s6-svwait -d /var/run/s6/services/haproxy2
+s6-svc -d /var/run/s6/services/haproxy1
+s6-svc -d /var/run/s6/services/haproxy2
+
+echo "haproxy shutdown ok, killing the pod"
+s6-svscanctl -t /var/run/s6/services
